@@ -17,7 +17,7 @@ namespace Capstone.Controllers
         // GET: Items
         public ActionResult Index()
         {
-            return View(db.Item.ToList());
+            return View(db.Item.Where(x => x.IsDeleted == false).ToList());
         }
 
         // GET: Items/Details/5
@@ -101,7 +101,10 @@ namespace Capstone.Controllers
             {
                 return HttpNotFound();
             }
-            return View(items);
+            items.IsDeleted = true;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         // POST: Items/Delete/5

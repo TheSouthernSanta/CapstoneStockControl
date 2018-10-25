@@ -13,6 +13,6 @@ namespace Capstone.Models
         public string Supplier { get; set; }
         public DateTime UseBy { get; set; }
         public int LowerThreshhold { get; set; }
-
+        public bool IsDeleted { get; set; }
     }
 }
