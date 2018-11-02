@@ -22,8 +22,9 @@ namespace Capstone
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
+            // For the default theme change bootstrap-theme1.css to bootstrap.css
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-theme1.css",
                       "~/Content/site.css"));
         }
     }
