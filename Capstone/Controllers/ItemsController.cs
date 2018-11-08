@@ -101,10 +101,8 @@ namespace Capstone.Controllers
             {
                 return HttpNotFound();
             }
-            items.IsDeleted = true;
-            db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return View(items);
         }
 
         // POST: Items/Delete/5
@@ -113,7 +111,7 @@ namespace Capstone.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Items items = db.Item.Find(id);
-            db.Item.Remove(items);
+            items.IsDeleted = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
