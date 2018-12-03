@@ -7,10 +7,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Items</h4>
         <hr />
@@ -22,23 +22,6 @@
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AmmountInKgs, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AmmountInKgs, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AmmountInKgs, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Supplier, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Supplier, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Supplier, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.UseBy, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -46,12 +29,25 @@
                 @Html.ValidationMessageFor(model => model.UseBy, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.LowerThreshhold, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.LowerThreshhold, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LowerThreshhold, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.QuantityType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.QuantityType, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QuantityType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.BaseQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BaseQuantity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BaseQuantity, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -70,3 +66,17 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+NAV
+<ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">News</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#">About</a></li>
+</ul>
+SEARCH BAR BTNS
+<h2>Home Page</h2>
+<input type="text" id="ProductSearch" placeholder="Search" />
+
+<button class="button is-checked" data-filter="*">show all</button>
+<button class="button" data-filter=".Name">Name</button>
+<button class="button" data-filter=".UseBy">Used By</button>
