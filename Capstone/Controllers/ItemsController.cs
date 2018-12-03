@@ -15,9 +15,49 @@ namespace Capstone.Controllers
         private DB db = new DB();
 
         // GET: Items
-        public ActionResult Index()
+        public ActionResult Index(IEnumerable<Items> items = null, OrderBy order = OrderBy.None)
         {
-            return View(db.Item.Where(x => x.IsDeleted == false).ToList());
+            if (items == null)
+            {
+                switch (order)
+                {
+                    case OrderBy.None:
+                        return View(db.Item.Where(x => x.IsDeleted == false).ToList());
+
+                    case OrderBy.Name:
+                        return View(db.Item.Where(x => x.IsDeleted == false).ToList().OrderBy(x => x.Name).ToList());
+
+                    case OrderBy.UseBy:
+                        return View(db.Item.Where(x => x.IsDeleted == false).ToList().OrderBy(x => x.UseBy).ToList());
+
+                    case OrderBy.Quantity:
+                        return View(db.Item.Where(x => x.IsDeleted == false).ToList().OrderBy(x => x.Quantity).ToList());
+
+                    case OrderBy.BaseQuantity:
+                        return View(db.Item.Where(x => x.IsDeleted == false).ToList().OrderBy(x => x.BaseQuantity).ToList());
+                }
+            }
+            else
+            {
+                switch (order)
+                {
+                    case OrderBy.None:
+                        return View(items.ToList());
+
+                    case OrderBy.Name:
+                        return View(items.ToList().OrderBy(x => x.Name).ToList());
+
+                    case OrderBy.UseBy:
+                        return View(items.ToList().OrderBy(x => x.UseBy).ToList());
+
+                    case OrderBy.Quantity:
+                        return View(items.ToList().OrderBy(x => x.Quantity).ToList());
+
+                    case OrderBy.BaseQuantity:
+                        return View(items.ToList().OrderBy(x => x.BaseQuantity).ToList());
+                }
+            }
+            return Content("An error occurred");
         }
 
         // GET: Items/Details/5
@@ -38,26 +78,28 @@ namespace Capstone.Controllers
         public ActionResult Searchby(string attrib, string value)
         {
             IEnumerable<Items> theList;
-            float floatVal;
-            DateTime Date;
-            int intVal;
 
             using (DB context = new DB())
             {
 
                 switch (attrib)
                 {
-                    case "Date":
-                        floatVal = float.Parse(value);
+                    case "UseBy":
                         theList = context.Item
-                           .Where(h => h.CreationDate.ToString() == value)
+                           .Where(h => h.UseBy.ToString() == value)
+                           .ToList();
+                        break;
+
+                    case "Name":
+                        theList = context.Item
+                           .Where(x => x.Name == value)
                            .ToList();
                         break;
 
                     default:
                         return Content("Not found");
                 }
-                return View("Index", theList);
+                return RedirectToAction("Index", theList);
             }
         }
 

@@ -19,4 +19,13 @@ namespace Capstone.Models
         public DateTime UseBy { get; set; } //filter by "Expiration Date"
         public bool IsDeleted { get; set; }
     }
+
+    public enum OrderBy
+    {
+        None,
+        Name,
+        Quantity,
+        BaseQuantity,
+        UseBy
+    }
 }
