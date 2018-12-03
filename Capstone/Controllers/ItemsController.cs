@@ -35,6 +35,32 @@ namespace Capstone.Controllers
             return View(items);
         }
 
+        public ActionResult Searchby(string attrib, string value)
+        {
+            IEnumerable<Items> theList;
+            float floatVal;
+            DateTime Date;
+            int intVal;
+
+            using (DB context = new DB())
+            {
+
+                switch (attrib)
+                {
+                    case "Date":
+                        floatVal = float.Parse(value);
+                        theList = context.Item
+                           .Where(h => h.CreationDate.ToString() == value)
+                           .ToList();
+                        break;
+
+                    default:
+                        return Content("Not found");
+                }
+                return View("Index", theList);
+            }
+        }
+
         // GET: Items/Create
         public ActionResult Create()
         {
