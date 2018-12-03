@@ -166,6 +166,10 @@
     <Compile Include="Migrations\201810221054266_UpdateItems.Designer.cs">
       <DependentUpon>201810221054266_UpdateItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812020537045_edit-item.cs" />
+    <Compile Include="Migrations\201812020537045_edit-item.Designer.cs">
+      <DependentUpon>201812020537045_edit-item.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Db.cs" />
     <Compile Include="Models\Items.cs" />
@@ -239,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810221054266_UpdateItems.resx">
       <DependentUpon>201810221054266_UpdateItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812020537045_edit-item.resx">
+      <DependentUpon>201812020537045_edit-item.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
