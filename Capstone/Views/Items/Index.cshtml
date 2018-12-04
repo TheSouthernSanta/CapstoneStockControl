@@ -12,16 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("Name", "Index", new { items = Model, order = Capstone.Models.OrderBy.Name })
+            @Html.ActionLink("Name", "Index", new { order = Capstone.Models.OrderBy.Name })
         </th>
         <th>
-            @Html.ActionLink("Quantity", "Index", new { items = Model, order = Capstone.Models.OrderBy.Quantity })
+            @Html.ActionLink("Quantity", "Index", new { order = Capstone.Models.OrderBy.Quantity })
         </th>
         <th>
-            @Html.ActionLink("Base Quantity", "Index", new { items = Model, order = Capstone.Models.OrderBy.BaseQuantity })
+            @Html.ActionLink("Base Quantity", "Index", new { order = Capstone.Models.OrderBy.BaseQuantity })
         </th>
         <th>
-            @Html.ActionLink("Use By", "Index", new { items = Model, order = Capstone.Models.OrderBy.UseBy })
+            @Html.ActionLink("Use By", "Index", new { order = Capstone.Models.OrderBy.UseBy })
         </th>
         <th></th>
     </tr>
@@ -33,13 +33,13 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
+                    @Html.DisplayFor(modelItem => item.Quantity) @Html.DisplayFor(modelItem => item.QuantityType)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.BaseQuantity)
+                    @Html.DisplayFor(modelItem => item.BaseQuantity) @Html.DisplayFor(modelItem => item.QuantityType)
                 </td>
                 <td>
-                    @Html.ActionLink(item.UseBy.ToShortDateString(), "SearchBy", "Items", new { attrib = "UseBy", value = item.UseBy }, null)
+                    @Html.ActionLink(item.UseBy.ToShortDateString(), "SearchBy", "Items", new { attrib = "UseBy", value = item.UseBy.ToShortDateString() }, null)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
