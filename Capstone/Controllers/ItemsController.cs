@@ -15,10 +15,8 @@ namespace Capstone.Controllers
         private DB db = new DB();
 
         // GET: Items
-        public ActionResult Index(IEnumerable<Items> items = null, OrderBy order = OrderBy.None)
+        public ActionResult Index(OrderBy order = OrderBy.UseBy)
         {
-            if (items == null)
-            {
                 switch (order)
                 {
                     case OrderBy.None:
@@ -36,27 +34,6 @@ namespace Capstone.Controllers
                     case OrderBy.BaseQuantity:
                         return View(db.Item.Where(x => x.IsDeleted == false).ToList().OrderBy(x => x.BaseQuantity).ToList());
                 }
-            }
-            else
-            {
-                switch (order)
-                {
-                    case OrderBy.None:
-                        return View(items.ToList());
-
-                    case OrderBy.Name:
-                        return View(items.ToList().OrderBy(x => x.Name).ToList());
-
-                    case OrderBy.UseBy:
-                        return View(items.ToList().OrderBy(x => x.UseBy).ToList());
-
-                    case OrderBy.Quantity:
-                        return View(items.ToList().OrderBy(x => x.Quantity).ToList());
-
-                    case OrderBy.BaseQuantity:
-                        return View(items.ToList().OrderBy(x => x.BaseQuantity).ToList());
-                }
-            }
             return Content("An error occurred");
         }
 
@@ -81,12 +58,12 @@ namespace Capstone.Controllers
 
             using (DB context = new DB())
             {
-
                 switch (attrib)
                 {
                     case "UseBy":
+                        var date = DateTime.Parse(value);
                         theList = context.Item
-                           .Where(h => h.UseBy.ToString() == value)
+                           .Where(h => h.UseBy == date)
                            .ToList();
                         break;
 
@@ -99,7 +76,7 @@ namespace Capstone.Controllers
                     default:
                         return Content("Not found");
                 }
-                return RedirectToAction("Index", theList);
+                return View("Index", theList);
             }
         }
 
@@ -114,10 +91,11 @@ namespace Capstone.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,AmmountInKgs,Supplier,UseBy,LowerThreshhold")] Items items)
+        public ActionResult Create(Items items)
         {
             if (ModelState.IsValid)
             {
+                items.CreationDate = DateTime.Now;
                 db.Item.Add(items);
                 db.SaveChanges();
                 return RedirectToAction("Index");

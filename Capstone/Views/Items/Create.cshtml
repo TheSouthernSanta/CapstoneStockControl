@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.UseBy, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.UseBy, htmlAttributes: new { @class = "control-label col-md-2 datepicker" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.UseBy, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.UseBy, "", new { @class = "text-danger" })
@@ -65,12 +65,13 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+    <script>
+        $(document).ready(function () {
+            $("#UseBy").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+        });
+    </script>
 }
-
-SEARCH BAR BTNS
-<h2>Home Page</h2>
-<input type="text" id="ProductSearch" placeholder="Search" />
-
-<button class="button is-checked" data-filter="*">show all</button>
-<button class="button" data-filter=".Name">Name</button>
-<button class="button" data-filter=".UseBy">Used By</button>
