@@ -30,7 +30,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; Current Time: @DateTime.Now.Year @DateTime.Now.DayOfWeek @DateTime.Now.TimeOfDay- Stock Control</p>
+            <p>&copy; Current Time: @DateTime.Now.Year @DateTime.Now.DayOfWeek @DateTime.Now.ToShortTimeString()- Stock Control</p>
         </footer>
     </div>
 

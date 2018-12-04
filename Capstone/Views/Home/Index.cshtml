@@ -2,36 +2,28 @@
     ViewBag.Title = "Home Page";
 }
 
-@*<div class="jumbotron">
-    <centre>
-        <h2><centre>All Stock   </centre></h2>
-        <p class="lead"><centre>View and rearrage stock to your needs.</centre></p>
-        <p><centre><a href="localhost:55025/Items/Index" class="btn btn-primary btn-lg">View All Stock &raquo;</a></centre></p>
-
-</div>*@
-
 <div class="row">
-    <div class="col-md-4">
-        <h2>A Feature</h2>
+    <div>
+        <h3>Index</h3>
         <p>
-            Another Link Here
+            Change Items
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">ButtonRedirect &raquo;</a></p>
-    </div>
-    
-    <div class="col-md-4">
-        <h2>A Feature</h2>
-        <p>
-            Another Link Here
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">ButtonRedirect &raquo;</a></p>
+        <p>@Html.ActionLink("View Items", "Index", "Items", null, new { @class = "btn btn-primary btn-large" })</p>
     </div>
 
-    <div class="col-md-4">
-        <h2>A Feature</h2>
+    <div>
+        <h3>All Stock</h3>
         <p>
-            Another Link Here
+            View All Stock
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">ButtonRedirect &raquo;</a></p>
+        <p>@Html.ActionLink("View Items", "Index", "Items", null, new { @class = "btn btn-primary btn-large" })</p>
+    </div>
+
+    <div>
+        <h3>FAQ</h3>
+        <p>
+            Need help?
+        </p>
+        <p>@Html.ActionLink("View Items", "Index", "Items", null, new { @class = "btn btn-primary btn-large" })</p>
     </div>
 </div>
